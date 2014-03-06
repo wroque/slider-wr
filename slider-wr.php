@@ -100,7 +100,7 @@ function slider_wr_ajax() {
                 $slider->delete($_POST['ID']);
                 $data = $_POST['ID'];
                 break;
-            case 'get': slider_wr($_POST['ID']);
+            case 'get': echo slider_wr($_POST['ID']);
                 break;
         }
     }
@@ -123,7 +123,10 @@ function slider_wr($arg = null, $w = '278', $h = '65') {
 		   . " from {$wpdb->prefix}items as item left join {$wpdb->prefix}sliders as slider on (item.slider_id = slider.ID) where {$arg} order by item.item_order ASC";
 
    $items = $wpdb->get_results($sql);
+    ob_start();
     require_once 'template/slider.php';
+    $out = ob_get_clean();
+    return $out;
 }
 
 function item_wr_admin($sliders) {
