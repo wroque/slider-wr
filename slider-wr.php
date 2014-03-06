@@ -8,7 +8,7 @@
  * Version: 0.1
  * Author: Wladimir Roque
  * Author URI: https://github.com/wroque/
- * License: GPL2
+ * License: GPL
  *
  * */
 require_once 'includes/classes.php';
@@ -40,8 +40,8 @@ function slider_wr_css_js() {
 
     wp_register_style('bxslider', plugins_url('/css/jquery.bxslider.css', __FILE__));
     wp_enqueue_style('bxslider');
-    
-    wp_enqueue_script('bxslider_js', plugins_url('/js/jquery.bxslider.js', __FILE__), array( 'jquery' ));
+
+    wp_enqueue_script('bxslider_js', plugins_url('/js/jquery.bxslider.js', __FILE__), array('jquery'));
     wp_enqueue_script('bxslider_js');
 
     wp_enqueue_script('elita_validate', plugins_url('/js/elita.validate.js', __FILE__));
@@ -67,14 +67,14 @@ function slider_wr_admin() {
     $sliders = $wpdb->get_results($sql);
     ob_start();
     require_once 'template/admin_slider.php';
-    item_wr_admin($sliders);
     $out = ob_get_clean();
-    
+    $out .= item_wr_admin($sliders);
+
     echo <<<EOF
     <div class="wrap">
 
     <div id="alert"></div>
-    
+
     <div id="tabs_container">
         <ul id="tabs">
             <li class="active"><a href="#tab1">Slider</a></li>
@@ -85,44 +85,43 @@ function slider_wr_admin() {
     </div>
 </div>
 EOF;
-    
 }
 
 function slider_wr_ajax() {
     global $wpdb;
+    $data = null;
     $slider = new Slider($wpdb);
     if (isset($_POST['ID'])) {
         switch ($_POST['option']) {
-            case 'edit':
-                $data = $slider->find($_POST['ID']);
+            case 'get': $data = slider_wr($_POST['ID']);
                 break;
-            case 'delete':
-                $slider->delete($_POST['ID']);
+            case 'edit': $data = $slider->find($_POST['ID']);
+                break;
+            case 'delete': $slider->delete($_POST['ID']);
                 $data = $_POST['ID'];
-                break;
-            case 'get': echo slider_wr($_POST['ID']);
                 break;
         }
     }
-    if (isset($data)) {    
+    if (is_object($data)) {
         echo json_encode($data);
+    } else {
+        echo $data;
     }
     die();
 }
 
-// BANNERS
-
 function slider_wr($arg = null, $w = '278', $h = '65') {
     global $wpdb;
     if (is_numeric($arg)) {
-		$arg = "slider.ID={$arg}";
-	} else {
-		$arg = "slider.slider_name='{$arg}'";
-	}
-   $sql = "select item.ID, item.item_title, item.item_link, item.item_target, item.item_link_img, item.item_order, slider_atts"
-		   . " from {$wpdb->prefix}items as item left join {$wpdb->prefix}sliders as slider on (item.slider_id = slider.ID) where {$arg} order by item.item_order ASC";
+        $arg = "slider.ID={$arg}";
+    } else {
+        $arg = "slider.slider_name='{$arg}'";
+    }
+    $sql = "select item.*, slider.slider_atts"
+            . " from {$wpdb->prefix}items as item left join {$wpdb->prefix}sliders as slider"
+            . " on (item.slider_id = slider.ID) where {$arg} order by item.item_order ASC";
 
-   $items = $wpdb->get_results($sql);
+    $items = $wpdb->get_results($sql);
     ob_start();
     require_once 'template/slider.php';
     $out = ob_get_clean();
@@ -136,11 +135,14 @@ function item_wr_admin($sliders) {
         $item->id = $_POST['item']['ID'];
         $item->save($_POST['item']);
     }
-    $sql = "select item.ID, item.item_title, item.item_link, item.item_link_img, item.item_order, item.created, slider.slider_name"
+    $sql = "select item.*, slider.slider_name"
             . " from {$wpdb->prefix}items as item left join {$wpdb->prefix}sliders as slider"
             . " on (item.slider_id = slider.ID) order by item.slider_id ASC";
     $items = $wpdb->get_results($sql);
+    ob_start();
     require_once 'template/admin_item.php';
+    $out = ob_get_clean();
+    return $out;
 }
 
 function item_wr_ajax() {
@@ -158,26 +160,28 @@ function item_wr_ajax() {
                 break;
         }
     }
-    echo json_encode($data);
+    if (is_object($data)){
+        echo json_encode($data);
+    }
     die();
 }
 
 if (function_exists('add_action')) {
-    
+
     add_action('activate_slider-wr/slider-wr.php', 'slider_wr_install');
     add_action('deactivate_slider-wr/slider-wr.php', 'slider_wr_desinstall');
 
     add_action('admin_menu', 'slider_add_menu');
-    
+
     add_action('admin_init', 'slider_wr_css_js');
     add_action('init', 'slider_wr_css_js');
-    
+
     add_action('wp_ajax_item_wr_admin', 'item_wr_admin');
-    add_action('wp_ajax_nopriv_item_wr_admin', 'item_wr_admin');    
-    
+    add_action('wp_ajax_nopriv_item_wr_admin', 'item_wr_admin');
+
     add_action('wp_ajax_slider_wr_ajax', 'slider_wr_ajax');
     add_action('wp_ajax_nopriv_slider_wr_ajax', 'slider_wr_ajax');
-    
+
     add_action('wp_ajax_item_wr_ajax', 'item_wr_ajax');
     add_action('wp_ajax_nopriv_item_wr_ajax', 'item_wr_ajax');
 }

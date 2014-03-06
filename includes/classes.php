@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of classes
  *
@@ -6,8 +7,8 @@
  */
 require_once 'core.php';
 
-class Slider extends Model { 
-    
+class Slider extends Model {
+
     public $name = 'slider';
 
     public function save($data) {
@@ -15,26 +16,26 @@ class Slider extends Model {
         $data['slider_atts'] = json_encode($data['slider_atts']);
         parent::save($data);
     }
+
 }
 
 class Item extends Model {
 
     public $name = 'item';
-
     public $validation = array(
-        'extensions' =>  array('png', 'jpg', 'jpeg', 'gif'),
+        'extensions' => array('png', 'jpg', 'jpeg', 'gif'),
         'size' => 10485760
     );
 
     public function save($data) {
         if (empty($data['link_img'])) {
             try {
-				if (strpos($data['item_link'], '#') === false) {
-					$parsed = parse_url($data['item_link']);
-					if (empty($parsed['scheme'])) {
-						$data['item_link'] = 'http://' . ltrim($data['item_link'], '/');
-					}
-				}
+                if (strpos($data['item_link'], '#') === false) {
+                    $parsed = parse_url($data['item_link']);
+                    if (empty($parsed['scheme'])) {
+                        $data['item_link'] = 'http://' . ltrim($data['item_link'], '/');
+                    }
+                }
                 if (!empty($_FILES['file']['name'])) {
                     $data['item_link_img'] = $this->upload();
                 }
@@ -67,4 +68,5 @@ class Item extends Model {
         }
         return $movefile['url'];
     }
+
 }

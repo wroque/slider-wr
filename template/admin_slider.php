@@ -147,7 +147,7 @@
                                 }
                                 break;
                             default:
-                                jQuery('[value="' + atts[i] + '"]').attr('selected','selected');
+                                jQuery('[value="' + atts[i] + '"]').attr('selected', 'selected');
                                 break;
                         }
                     }
@@ -155,7 +155,7 @@
                     for (var i in data) {
                         jQuery('[name="slider[' + i + ']"]').val(data[i]);
                     }
-                    jQuery.post(elem.attr('href'), {                            
+                    jQuery.post(elem.attr('href'), {
                         action: 'slider_wr_ajax',
                         option: 'get',
                         ID: elem.parents('tr').data('id')

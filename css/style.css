@@ -31,7 +31,7 @@ fieldset {
     border: 1px solid lightgray;
     margin: 10px 0 20px;
 }
-.form-options 
+.form-options
 {
     margin-top: 10px;
     border-top: 1px solid lightgray;
@@ -73,7 +73,7 @@ table img {
 #tabs li.active a:hover {
     background-color: #eeeeee;
 }
- 
+
 #tabs li a.icon_accept {
     background-position: 5px;
     background-repeat: no-repeat;
@@ -82,7 +82,7 @@ table img {
 #tabs li a.icon_accept:hover {
     padding-left: 24px;
 }
- 
+
 #tabs_content_container {
     border: 1px solid #ccc;
     border-top: none;
@@ -116,14 +116,14 @@ table img {
     font-size: 11px;
 }
 .close {
-	line-height: 2px;
-	top: 8px;
-	right: 0px;
-	background: transparent;
-	position: absolute;
-	color: #C41100;
-	font-weight: bold;
-	border: 0;
+    line-height: 2px;
+    top: 8px;
+    right: 0px;
+    background: transparent;
+    position: absolute;
+    color: #C41100;
+    font-weight: bold;
+    border: 0;
 }
 .success input {
     border: 1px solid #3B7008 !important;

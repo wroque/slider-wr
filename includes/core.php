@@ -5,37 +5,36 @@
  *
  * @author wroque
  */
-
 class Schema {
-    private $wpdb;
 
+    private $wpdb;
     public $data = array(
-            'slider' =>
-                array(
-                    'key' => array(
-                        'ID' => 'int(11) NOT NULL AUTO_INCREMENT'
-                    ),
-                    'name' => 'varchar(150)',
-                    'atts' => 'varchar(250)',
-                    'status' => 'tinyint DEFAULT 1'
-                ),
-            'item' =>
-                array(
-                    'key' => array(
-                        'ID' => 'int(11) NOT NULL AUTO_INCREMENT'
-                    ),
-                    'key_2' => array(
-                        'slider_id' => 'int(11) DEFAULT NULL'
-                    ),
-                    'link' => 'varchar(250)',
-                    'link_img' => 'varchar(250)',
-                    'title' => 'varchar(150)',
-                    'target' => 'varchar(50)',
-                    'description' => 'text',
-                    'status' => 'tinyint DEFAULT 1',
-                    'order' => 'int(11)'
-                )
-        );
+        'slider' =>
+        array(
+            'key' => array(
+                'ID' => 'int(11) NOT NULL AUTO_INCREMENT'
+            ),
+            'name' => 'varchar(150)',
+            'atts' => 'varchar(250)',
+            'status' => 'tinyint DEFAULT 1'
+        ),
+        'item' =>
+        array(
+            'key' => array(
+                'ID' => 'int(11) NOT NULL AUTO_INCREMENT'
+            ),
+            'key_2' => array(
+                'slider_id' => 'int(11) DEFAULT NULL'
+            ),
+            'link' => 'varchar(250)',
+            'link_img' => 'varchar(250)',
+            'title' => 'varchar(150)',
+            'target' => 'varchar(50)',
+            'description' => 'text',
+            'status' => 'tinyint DEFAULT 1',
+            'order' => 'int(11)'
+        )
+    );
 
     public function __construct(\wpdb $wpdb) {
         $this->wpdb = $wpdb;
@@ -82,7 +81,6 @@ class Model {
     public $id;
     public $name;
     public $data = array();
-    
     private $wpdb;
 
     public function __construct(\wpdb $wpdb) {

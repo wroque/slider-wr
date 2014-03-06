@@ -35,8 +35,8 @@
                     <div class="form-item">
                         <label><?php echo __('Slider'); ?></label>
                         <select name="item[slider_id]">
-                            <?php foreach($sliders as $slider): ?>
-                            <option value="<?php echo $slider->ID; ?>"><?php echo $slider->slider_name; ?></option>
+                            <?php foreach ($sliders as $slider): ?>
+                                <option value="<?php echo $slider->ID; ?>"><?php echo $slider->slider_name; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -73,7 +73,7 @@
         </thead>
         <tbody>
             <?php
-                foreach ($items as $item): 
+            foreach ($items as $item):
                 ?>
                 <tr data-id="<?php echo $item->ID; ?>">
                     <td>
@@ -131,7 +131,7 @@
                 jQuery('[data-id=' + data + ']').remove();
             }
         });
-    });    
+    });
 
     elita.validate({
         form: '#formItem',
