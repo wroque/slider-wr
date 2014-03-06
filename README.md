@@ -8,7 +8,7 @@ Slider-wr es un plugin wordpress, gestion simple de slider.
 	  /*
 	  * Slider Wr Simple
 	  *
-	  * @param string, int $arg (wp_item.ID, wp.title).
+	  * @param int or string $arg (wp_item.ID, wp.title).
 	  * @return string.
 	  *
 	  **/
