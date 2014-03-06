@@ -1,7 +1,8 @@
-slider-wr
+SLIDER-WR
 =========
 
-Slider Wr es un plugin, para wordpress de gestion de banner.
+
+Slider-wr es un plugin wordpress, gestion simple de slider.
 
 	<?php
 	  /*
@@ -13,3 +14,14 @@ Slider Wr es un plugin, para wordpress de gestion de banner.
 	  **/
 	  echo slider_wr($arg);
 	?>
+	
+Utiliza librerias js 
+
+	jquery.js
+	jquery.bxslider
+	elita.validate.js
+	
+
+	
+	
+
