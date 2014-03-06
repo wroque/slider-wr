@@ -65,7 +65,7 @@
                         <input type="checkbox" name="slider[slider_atts][randomStart]" value="true" />
                     </div>
                     <div class="form-item">
-                        <label><?php echo __('Infinite Loop'); ?>Ciclo infinito</label>
+                        <label><?php echo __('Infinite Loop'); ?></label>
                         <input type="checkbox" name="slider[slider_atts][infiniteLoop]" value="true" />
                     </div>
                 </div>
