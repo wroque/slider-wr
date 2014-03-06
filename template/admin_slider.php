@@ -57,7 +57,7 @@
                         <input type="checkbox" name="slider[slider_atts][controls]" value="true" />
                     </div>
                     <div class="form-item">
-                        <label><?php echo __('AutoControls'); ?>Controles Auto</label>
+                        <label><?php echo __('AutoControls'); ?></label>
                         <input type="checkbox" name="slider[slider_atts][autoControls]" value="true" />
                     </div>
                     <div class="form-item">
