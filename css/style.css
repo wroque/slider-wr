@@ -1,0 +1,136 @@
+.col2 {
+    float: left;
+    border-right: 1px solid lightgray;
+    width: 32%;
+}
+.row .col2:last-child {
+    border-right-width: 0;
+}
+.row:after {
+    display: table;
+    content: " ";
+    clear:left;
+}
+label {
+    width: 160px;
+    display: inline-block;
+}
+.form-item {
+    margin: 0 25px 10px;
+    position: relative;
+}
+input[type=text], textarea {
+    width: 300px;
+}
+legend {
+    margin: 10px;
+    font: bold 14px Arial;
+    display: block;
+}
+fieldset {
+    border: 1px solid lightgray;
+    margin: 10px 0 20px;
+}
+.form-options 
+{
+    margin-top: 10px;
+    border-top: 1px solid lightgray;
+    padding: 20px;
+}
+table img {
+    border: 1px solid lightgray;
+}
+#tabs_container {
+    border-bottom: 1px solid #ccc;
+}
+#tabs {
+    list-style: none;
+    padding: 5px 0 4px 0;
+    margin: 0 0 0 10px;
+}
+#tabs li {
+    display: inline;
+}
+#tabs li a {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    text-decoration: none;
+    background-color: #eeeeee;
+    border-bottom: none;
+    outline: none;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+#tabs li a:hover {
+    background-color: #dddddd;
+}
+#tabs li.active a {
+    border-bottom: 1px solid #fff;
+    background-color: #fff;
+}
+#tabs li.active a:hover {
+    background-color: #eeeeee;
+}
+ 
+#tabs li a.icon_accept {
+    background-position: 5px;
+    background-repeat: no-repeat;
+    padding-left: 24px;
+}
+#tabs li a.icon_accept:hover {
+    padding-left: 24px;
+}
+ 
+#tabs_content_container {
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 10px;
+    width: 400px;
+}
+.tab_content {
+    display: none;
+}
+.alert {
+    padding: 10px;
+    margin: 20px 0;
+    font-weight: bold;
+    border-radius: 4px;
+    background: #F8E5E4;
+    border: 1px solid #C41100;
+    position: relative;
+    color: #C41100;
+}
+.success {
+    color: green;
+    margin: 0 25px 10px !important;
+}
+.error {
+    color: red;
+    margin: 0 25px 10px !important;
+}
+.help-inline {
+    display: block;
+    font-style: italic;
+    font-size: 11px;
+}
+.close {
+	line-height: 2px;
+	top: 8px;
+	right: 0px;
+	background: transparent;
+	position: absolute;
+	color: #C41100;
+	font-weight: bold;
+	border: 0;
+}
+.success input {
+    border: 1px solid #3B7008 !important;
+}
+.error input {
+    border: 1px solid #C41100 !important;
+}
+#frame-box {
+    margin-top: 20px;
+}
