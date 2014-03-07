@@ -8,18 +8,12 @@ Slider-wr es un plugin wordpress, gestion simple de slider.
 	  /*
 	  * Slider Wr Simple
 	  *
-	  * @param int or string $arg (wp_item.ID, wp.title).
+	  * @param int or string $arg (wp_slider.ID, wp_slider.slider_name).
 	  * @return string.
 	  *
 	  **/
 	  echo slider_wr($arg);
 	?>
-	
-Utiliza librerias js 
-
-	jquery.js
-	jquery.bxslider
-	elita.validate.js
 	
 
 	
