@@ -72,9 +72,7 @@ function slider_wr_admin() {
 
     echo <<<EOF
     <div class="wrap">
-
     <div id="alert"></div>
-
     <div id="tabs_container">
         <ul id="tabs">
             <li class="active"><a href="#tab1">Slider</a></li>
