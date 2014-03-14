@@ -94,27 +94,9 @@ class Model {
             $format = self::format_data_save($data);
             $sql = sprintf("insert into `%ss` (`%s`) values ('%s')", $name, $format['fields'], $format['values']);
         } else {
-            $format = self::format_data_edit($data);
-            $sql = sprintf("update `%ss` set %s where `ID`=%d", $name, $format, $this->id);
+            $sql = sprintf("update `%ss` set %s where `ID`=%d", $name, self::format_data_edit($data), $this->id);
         }
         $this->wpdb->query($sql);
-    }
-
-    protected static function format_data_edit(array $data) {
-        $arr = array();
-        foreach ($data as $field => $value) {
-            array_push($arr, "`{$field}`='{$value}'");
-        }
-        $str = implode(',', $arr);
-        return $str;
-    }
-
-    protected static function format_data_save(array $data) {
-        $arr = array();
-        $data['created'] = date('Y-m-d H:i:s');
-        $arr['fields'] = implode('`,`', array_keys($data));
-        $arr['values'] = implode("','", array_values($data));
-        return $arr;
     }
 
     public function delete($id = null) {
@@ -128,8 +110,27 @@ class Model {
     public function find($id = null, $fields = '*') {
         $name = $this->wpdb->prefix . $this->name;
         $sql = sprintf('SELECT %s FROM %ss WHERE ID=%d', $fields, $name, $id);
-        $this->data = $this->wpdb->get_results($sql);
-        return current($this->data);
+        $row = $this->wpdb->get_results($sql);
+        $this->data = current($row);
+        return $this->data;
+    }
+
+    private static function format_data_edit(array $data) {
+        $arr = array();
+        foreach ($data as $field => $value) {
+            array_push($arr, "`{$field}`='{$value}'");
+        }
+        $str = implode(',', $arr);
+        return $str;
+    }
+
+    private static function format_data_save(array $data) {
+        $data['created'] = date('Y-m-d H:i:s');
+        $arr = array(
+            'fields' => implode('`,`', array_keys($data)),
+            'values' => implode("','", array_values($data))
+            );
+        return $arr;
     }
 
 }
