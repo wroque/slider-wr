@@ -12,8 +12,9 @@ class Slider extends Model {
     public $name = 'slider';
 
     public function save($data) {
-        $data['slider_atts'] = array_filter($data['slider_atts']);
-        $data['slider_atts'] = json_encode($data['slider_atts']);
+        $data['slider_atts'] = json_encode(
+            array_filter($data['slider_atts'])
+            );
         parent::save($data);
     }
 
